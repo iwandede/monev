@@ -1,0 +1,5 @@
+# Error Handler
+ErrorDocument 404 /skripsi/404.php
+ErrorDocument 500 /skripsi/500.php
+
+

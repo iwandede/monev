@@ -1,0 +1,11 @@
+RewriteEngine On
+# Error Handler
+ErrorDocument 404 /skripsi/404.php
+ErrorDocument 500 /skripsi/500.php
+
+#  Rules
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule . /skripsi/index.php
+
+
