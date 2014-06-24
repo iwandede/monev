@@ -3,29 +3,27 @@ require_once("header.php");
 if($_POST){
 $jumlahparam = count($_POST["param"]);
 $jmlh 		 = count($_POST["parameter"]);
-
 $id_user 			= PostData('perusahaan');
 $id 				= PostData('sumberEmisi');
 $idSemester 		= PostData('smt');
-$peraturan			= PostData('peraturanBM');	
+	
 
 for ($i=0; $i < $jmlh; $i++) {
 	$nilai=$_POST['parameter'][$i];
 	$parameter=$_POST['param'][$i];
-	$addUser = sk_Mysql("INSERT INTO tbl_monppu values('','{$id}','{$parameter}','{$nilai}','{$idSemester}','{$id_user}','{$peraturan}')");
+	$addUser = sk_Mysql("INSERT INTO tbl_monppu values('','{$id}','{$parameter}','{$id_user}','{$idSemester}','{$nilai}')");
 }
 
 if(!$addUser){
 		SetMessage("Gagal Menambah User!!!");
-		redirect(PATHURL."b/addppu");
+		redirect(PATHURL."b/addppu.php");
 	}else{
 		SetMessage("Berhasil Menambah data User");
-		redirect(PATHURL."b/addppu");
+		redirect(PATHURL."b/addppu.php");
 	}
 
 }
-
-$_SESSION['message'] = isset($_SESSION['message']) ? alert($_SESSION['message']) : "";				
+				
 ?>
 <div id="main_content">
 	<ul>
@@ -36,7 +34,8 @@ $_SESSION['message'] = isset($_SESSION['message']) ? alert($_SESSION['message'])
 <div id="judulform">
 Daftar Perusahaan yang dipantau
 	</div>
-<form action="<?php echo PATHURL."b/addppu?act=post"; ?>" method="POST" name="updateProfil" id="alumniForm">
+	<?php $_SESSION['message'] = isset($_SESSION['message']) ? alert($_SESSION['message']) : ""; ?>
+<form action="?" method="POST" name="updateProfil" id="alumniForm">
 	<table>
 		<tr>
 			<td id="td">Perusahaan</td>
@@ -54,13 +53,13 @@ Daftar Perusahaan yang dipantau
 			<td>:</td>
 			<td>
 				<?php
-				$sumber = sk_select('tbl_sumberemisi','id,nama');
+				$sumber = sk_select('tbl_sumberemisi','id,kodeCerobong,nama',"WHERE id_user='".$_SESSION['UserSession']['id']."'");
 				?>
 				<select name="sumberEmisi" id="sumber" onchange="showSumber(this.value)">
 					<option disabled="true" selected="selected">-Pilih Seumber Emisi-</option>
 					<?php 
 					foreach ($sumber as $se) {
-						echo "<option value='".$se['id']."'>{$se['nama']}</option>";
+						echo "<option value='".$se['id']."'>{$se['nama']}&nbsp;{$se['kodeCerobong']}</option>";
 					}
 					?>
 				</select>				
@@ -72,20 +71,15 @@ Daftar Perusahaan yang dipantau
 			</td>
 			<td>:</td>
 			<td>
-				<div id="parameter">test</div>
+				<div id="parameter">Pilih terlebih dahulu Sumber Emisi</div>
 			</td>
 		</tr>
 		<tr>
-			<td id="td">Semester</td>
+			<td id="td">Tanggal</td>
 			<td>:</td>
 			<td>
-				<input type="text" id="tanggal"/>
+				<input type="text" name="smt" id="tanggal"/>
 			</td>
-		</tr>
-		<tr>
-			<td id="td">Peraturan Baku Mutu</td>
-			<td>:</td>
-			<td><textarea name="peraturanBM"></textarea></td>
 		</tr>
 		<tr>
 			<td colspan="2" align="right" id="td"><input type="submit" name="ubah" value="Simpan" /></td>
@@ -117,12 +111,12 @@ function showSumber(str) {
 }  	
 $(document).ready(function() { 
 		$("#tanggal").datepicker({ 
-			dateFormat: 'dd-mm-yy' 
+			dateFormat: 'yy-mm-dd' 
 			});
       $( "#main_content" ).tabs({
           selected: 1,
             select: function(event, ui) {
-                var url = "<?php echo PATHURL; ?>a/Daftarppu.php";
+                var url = "<?php echo PATHURL; ?>b/ppu.php";
                 if(url) {
                     location.href = url;
                     return false;

@@ -38,7 +38,7 @@
 				    <td>Perusahaan</td>
 				    <td>:</td>
 				    <td>
-				        <?php echo $_SESSION['userid']['nama']; ?>
+				        <strong><?php echo $_SESSION['userid']['nama']; ?></strong>
 				        <input type="hidden" name="parameter" value="<?php echo $_SESSION['userid']['id']; ?>">			
 				    </td>        
                 </tr>
@@ -47,7 +47,7 @@
 						<td>:</td>
 						<td>
 						<input type="hidden" name="sumber" value="<?php echo $_SESSION['sumber']['idSumber']; ?>">
-						<?php echo $_SESSION['sumber']['nama']; ?>
+						<strong><?php echo $_SESSION['sumber']['nama']; ?></strong>
 						</td>                
                 </tr>
 				<tr>

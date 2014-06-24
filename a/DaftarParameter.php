@@ -3,9 +3,7 @@ include("../app/sk_config.php");
 include("../app/sk_database.php");
 include("script.php");
 $datas = sk_Mysql("SELECT * FROM tbl_parameter WHERE id='".GetData('q')."'");
-$perusahaan = sk_select("tbl_user","id_user,namaPerusahaan","WHERE id_user = '".GetData('q')."'");
-$_SESSION['userid'] =  array("id" =>$perusahaan[0]['id_user'],
-                              "nama" =>$perusahaan[0]['namaPerusahaan']);
+
 $cekData = mysql_num_rows($datas);
 if($cekData == 0) {
 	alert("Data Parameter Belum diinputkan","error");

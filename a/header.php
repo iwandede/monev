@@ -9,7 +9,6 @@ if($_SESSION['UserSession']['role']!=2)
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
-<html lang="en">
 <head>
 <meta charset="utf-8" />    
 	<?php include("script.php"); ?>
@@ -37,6 +36,9 @@ if($_SESSION['UserSession']['role']!=2)
         </li>
         <li class="<?php echo class_current("parameter.php", $current); ?>">
         	<a href="<?php echo PATHURL.'a/parameter.php'?>"><span>Parameter</span></a>
+        </li>
+        <li class="<?php echo class_current("evaluasi.php", $current); ?>">
+        	<a href="<?php echo PATHURL.'a/evaluasi.php'?>"><span>Evaluasi</span></a>
         </li>
         <li class="last"><a href="logout.php"><span>Logout</span></a></li>
     </ul>

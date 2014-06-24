@@ -27,7 +27,7 @@ if($_SESSION['UserSession']['role']!=1)
     <ul class="menu">
     	<li class="dummy"></li>
         <li class="<?php echo class_current("index", $current); ?>">
-        		<a href="<?php echo PATHURL; ?>a/" class="parent"><span>Beranda</span></a>
+        		<a href="<?php echo PATHURL; ?>b/" class="parent"><span>Beranda</span></a>
         </li>
         <li class="<?php echo class_current("DaftarUser", $current); ?>">
         	<a href="<?php echo PATHURL.'b/ppu.php'?>"><span>PPU</span></a>

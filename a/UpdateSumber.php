@@ -145,6 +145,7 @@
 <script src="<?php echo PATHURL; ?>js/jquery.validate.min.js"></script>
 <script type="text/javascript">
       $(function() { 
+    	  $('select').selectmenu();
       $("#perusahaan").validate({
     
         // Specify the validation rules
