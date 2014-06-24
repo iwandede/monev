@@ -3,15 +3,21 @@ require_once("header.php");
 if($_POST){
 $jumlahparam = count($_POST["param"]);
 $jmlh 		 = count($_POST["parameter"]);
-$id_user 			= PostData('perusahaan');
-$id 				= PostData('sumberEmisi');
-$idSemester 		= PostData('smt');
-	
+$id_user 	 = PostData('perusahaan');
+$id 		 = PostData('sumberEmisi');
+$idSemester  = PostData('smt');
+$tahun = date("Y");
+$bulan = explode("-",$idSemester);
+if($bulan[1] <=6){
+	$smt = 1;
+}else{
+	$smt = 2;
+}
 
 for ($i=0; $i < $jmlh; $i++) {
 	$nilai=$_POST['parameter'][$i];
 	$parameter=$_POST['param'][$i];
-	$addUser = sk_Mysql("INSERT INTO tbl_monppu values('','{$id}','{$parameter}','{$id_user}','{$idSemester}','{$nilai}')");
+	$addUser = sk_Mysql("INSERT INTO tbl_monppu values('','{$id}','{$parameter}','{$id_user}','{$idSemester}','{$nilai}','{$smt}')");
 }
 
 if(!$addUser){
@@ -21,7 +27,6 @@ if(!$addUser){
 		SetMessage("Berhasil Menambah data User");
 		redirect(PATHURL."b/addppu.php");
 	}
-
 }
 				
 ?>
@@ -111,7 +116,7 @@ function showSumber(str) {
 }  	
 $(document).ready(function() { 
 		$("#tanggal").datepicker({ 
-			dateFormat: 'yy-mm-dd' 
+			dateFormat: 'yy-m-dd' 
 			});
       $( "#main_content" ).tabs({
           selected: 1,

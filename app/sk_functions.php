@@ -95,4 +95,13 @@ function paging($sql,$item_per_page){
    &nbsp;&nbsp;&nbsp;<a href="?page=<?php echo $lanjut; ?>">selanjutnya&nbsp;&gt;</a>&nbsp;&nbsp;&nbsp;<a href="?page=<?php echo $jumlah_hal;?>">&gt;&gt;</a>
    <?php 
 } 
+function getSemester($tanggal){
+	$smt = @date($tanggal,"m");
+	if($smt <= 6){
+		$semester = 1;
+	}else {
+		$semester = 2;
+	}
+	return $semester;
+}
 ?>

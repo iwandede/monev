@@ -16,7 +16,7 @@ if(GetData('act')=="del") {
 <div id="main_content">
 	<ul>
 		<li><a href="#tabs-1">Daftar Parameter</a></li>
-		<li><a href="#">Ubah data Parameter</a></li>
+		<!-- li><a href="#">Ubah data Parameter</a></li-->
 	</ul>
 <div id="tabs-1">
 <div id="judulform1">
